@@ -1,21 +1,21 @@
 ## SIMPLE SHELL PROJECT
 
 ### DESCRIPTION:
-The project "simpleshell" is an implementation of a simple UNIX shell that accepts and executes user commands.
+The project "simple_shell" is an implementation of a simple UNIX shell that accepts and executes user commands.
 It is designed to perform the same basic functions as the built-in shell (/bin/sh) on UNIX systems.
 
 ### COMPILATION COMMAND:
 To compile the simpleshell program, use the following command:
 
 ```
-gcc -Wall -Werror -Wextra -pedantic *.c -o simpleshell
+gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o simple_shell
 ```
 
 ### USAGE:
 To run the program, execute the following command:
 
 ```
-./simpleshell
+./simple_shell
 ```
 
 ### REQUIREMENTS:
