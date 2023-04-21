@@ -5,7 +5,7 @@
  *
  * Return: A pointer to a string containing the user's command
  */
-char	*prompt(void)
+char *prompt(void)
 {
 	char *buffer = NULL;
 	size_t bufsize = 0;
