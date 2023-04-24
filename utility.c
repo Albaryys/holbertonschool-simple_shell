@@ -43,3 +43,39 @@ char *getinput(void)
 
 	return (input);
 }
+
+/**
+ * search_path - searches for the full path of a given command
+ * @command: the command to search for
+ * @env: the environment variables
+ * Return: the full path of the command if found, otherwise NULL
+ */
+char *search_path(char *command, char **env)
+{
+	char *path, *token, *tmp;
+	struct stat st;
+
+	if (!command || !env)
+		return (NULL);
+
+	path = _getenv("PATH", env);
+
+	token = strtok(path, ":");
+	while (token)
+	{
+		tmp = _strcat(token, "/");
+		tmp = _strcat(tmp, command);
+
+		if (stat(tmp, &st) == 0)
+		{
+			free(path);
+			return (tmp);
+		}
+		free(tmp);
+		token = strtok(NULL, ":");
+	}
+
+	free(path);
+	return (NULL);
+}
+
