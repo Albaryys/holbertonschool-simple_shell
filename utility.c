@@ -23,3 +23,23 @@ char *_getenv(const char *name)
 	}
 	return (NULL);
 }
+
+/**
+ * getinput - read input from user
+ *
+ * Return: a pointer to a string containing the user's input
+ */
+char *getinput(void)
+{
+	char *input = NULL;
+	size_t bufsize = 0;
+
+	if (getline(&input, &bufsize, stdin) == -1)
+	{
+		perror("getline");
+		free(input);
+		input = NULL;
+	}
+
+	return (input);
+}
