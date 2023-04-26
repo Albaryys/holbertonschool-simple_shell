@@ -50,21 +50,29 @@ char *_strdup(const char *str)
 }
 
 /**
- * _strcmp - compares two strings
+ * _strncmp - compares two strings
  * @s1: first string to compare
  * @s2: second string to compare
+ * @n: the size to compare
  *
  * Return: 0 if s1 and s2 are equal, a negative value if s1 is less than s2,
  *         or a positive value if s1 is greater than s2.
  */
-int _strcmp(char *s1, char *s2)
+int _strncmp(const char* s1, const char* s2, size_t n)
 {
-	while (*s1 && (*s1 == *s2))
+	size_t i;
+
+	for (i = 0; i < n; i++)
 	{
-		s1++;
-		s2++;
+		if (s1[i] != s2[i])
+		{
+			return (int) (s1[i] - s2[i]);
+		} else if (s1[i] == '\0')
+		{
+			return (0);
+		}
 	}
-	return (*s1 - *s2);
+	return (0);
 }
 
 /**
