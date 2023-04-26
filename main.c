@@ -27,6 +27,9 @@ int main(void)
 	/* Determine if the program is running in interactive mode or not */
 	int interactive = isatty(STDIN_FILENO);
 
+	path = _getenv("PATH", &(*env));
+	path_list = tokenize_str_to_array(path, ":");
+
 	while (1)
 	{
 		/* If the program is running in interactive mode, print the prompt */
@@ -47,55 +50,55 @@ int main(void)
 				printf("\n");
 
 			free(cmd);
+			free_array(path_list);
 			return (EXIT_SUCCESS);
 		} else if (_strncmp(cmd, "exit", 4) == 0)
 		{
+			/* exit resuqted */
 			free(cmd);
+			free_array(path_list);
 			return (EXIT_SUCCESS);
 		}
 		if (nb_char_read > 1)
 		{
 			/*une commande a été tapée*/
-
-			pid = fork();
-			if (pid == -1)
+			args = tokenize_str_to_array(cmd, " ");
+			cmd_name = args[0];
+			full_path_cmd = find_program_in_path(cmd_name, path_list);
+			if (full_path_cmd == NULL)
 			{
-				perror("fork");
 				free(cmd);
+				free_array(args);
+				free_array(path_list);
+				free(full_path_cmd);
 				return (EXIT_FAILURE);
-			} else if (pid == 0)
-			{
-				/*Child process*/
-				args = tokenize_str_to_array(cmd, " ");
-				cmd_name = args[0];
-				path = _getenv("PATH", &(*env));
-				path_list = tokenize_str_to_array(path, ":");
-				full_path_cmd = find_program_in_path(cmd_name, path_list);
-				if (full_path_cmd == NULL)
-				{
-					free(cmd);
-					free_array(args);
-					free_array(path_list);
-					free(full_path_cmd);
-					return (EXIT_FAILURE);
-				}
+			}
 
-				if (full_path_cmd == not_found)
+			if (*full_path_cmd == *not_found)
+			{
+				printf("sh: %d: %s: not found\n", nb_cmd, cmd_name);
+			} else
+			{
+				pid = fork();
+				if (pid == -1)
 				{
-					printf("sh: %d: %s: not found\n", nb_cmd, cmd_name);
-				} else
+					perror("fork");
+					free(cmd);
+					return (EXIT_FAILURE);
+				} else if (pid == 0)
 				{
+					/*Child process*/
 					execve(full_path_cmd, args, &(*env));
 					free_array(args);
 					free_array(path_list);
 					free(full_path_cmd);
 					perror("execve");
 					exit(EXIT_FAILURE);
+				} else
+				{
+					/*Parent process*/
+					wait(&status);
 				}
-			} else
-			{
-				/*Parent process*/
-				wait(&status);
 			}
 		}
 	}
