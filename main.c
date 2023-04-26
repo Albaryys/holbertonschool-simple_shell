@@ -83,11 +83,15 @@ int main(void)
 				{
 					perror("fork");
 					free(cmd);
-					return (EXIT_FAILURE);
+					free_array(args);
+					free_array(path_list);
+					free(full_path_cmd);
+					exit(EXIT_FAILURE);
 				} else if (pid == 0)
 				{
 					/*Child process*/
 					execve(full_path_cmd, args, &(*env));
+					free(cmd);
 					free_array(args);
 					free_array(path_list);
 					free(full_path_cmd);
@@ -99,6 +103,9 @@ int main(void)
 					wait(&status);
 				}
 			}
+			free_array(args);
+			if (_strncmp(full_path_cmd, "NOTFOUND", 8) != 0)
+				fee(full_path_cmd);
 		}
 	}
 
