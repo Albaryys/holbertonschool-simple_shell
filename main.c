@@ -8,10 +8,7 @@
  *
  * Return:     Always returns EXIT_SUCCESS.
  */
-
-extern char **environ;
-
-int main()
+int main(void)
 {
 	char *cmd = NULL;
 	int nb_cmd = 0;
