@@ -14,7 +14,8 @@ char *_getenv(const char *name_var_env, char **env)
 
 	while (*env != NULL)
 	{
-		if (_strncmp(name_var_env, *env, len_name_var_env) == 0 && (*env)[len_name_var_env] == '=')
+		if (_strncmp(name_var_env, *env, len_name_var_env)
+				== 0 && (*env)[len_name_var_env] == '=')
 		{
 			return (&(*env)[len_name_var_env + 1]);
 		}
@@ -50,14 +51,15 @@ char *getinput(void)
  *
  * Return: the full path of the program found, otherwise "NOTFOUND"
  */
-char* find_program_in_path(char *program_name, char **path_list)
+char *find_program_in_path(char *program_name, char **path_list)
 {
 	char *full_path;
 
 	while (*path_list != NULL)
 	{
 		/* Construct the full path to the program */
-		full_path = malloc(sizeof(*full_path) * (_strlen(*path_list) + _strlen(program_name) + 2));
+		full_path = malloc(sizeof(*full_path) * (_strlen(*path_list)
+					+ _strlen(program_name) + 2));
 		if (full_path == NULL)
 			return (NULL);
 
@@ -68,7 +70,7 @@ char* find_program_in_path(char *program_name, char **path_list)
 			return (full_path);   /* program found */
 		}
 		path_list++;    /* move to the next directory */
-		free (full_path);
+		free(full_path);
 	}
 	return ("NOTFOUND");   /* program not found */
 }
@@ -97,13 +99,13 @@ void free_array(char **arr)
  *
  * Return: the pointer to the array
  */
-char **tokenize_str_to_array(char* cmd, char *delimiter)
+char **tokenize_str_to_array(char *cmd, char *delimiter)
 {
 	char *cmd_copy = _strdup(cmd);
 	char **args = NULL;
 	int num_tokens = 0;
 	int i = 0;
-	char* token = strtok(cmd, delimiter);
+	char *token = strtok(cmd, delimiter);
 
 	while (token != NULL)
 	{
@@ -123,12 +125,13 @@ char **tokenize_str_to_array(char* cmd, char *delimiter)
 
 	while (token != NULL)
 	{
-		args[i] = _strdup(token); /* allouer la mémoire pour stocker la chaîne de caractères et la copier */
+		/* allouer la mémoire pour stocker la chaîne de caractères et la copier */
+		args[i] = _strdup(token);
 		i++;
 		token = strtok(NULL, delimiter);
 	}
 
 	args[num_tokens] = NULL; /* dernière case du tableau égale à NULL */
-	free (cmd_copy);
+	free(cmd_copy);
 	return (args);
 }
