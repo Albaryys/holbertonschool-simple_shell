@@ -72,3 +72,19 @@ char* find_program_in_path(char *program_name, char **path_list)
 	}
 	return ("NOTFOUND");   /* program not found */
 }
+
+/**
+ * free_array - Free an array
+ * @arr: the name of the array to be freeing.
+ */
+void free_array(char **arr)
+{
+	int i = 0;
+
+	while (arr[i] != NULL)
+	{
+		free(arr[i]);
+		i++;
+	}
+	free(arr);
+}
