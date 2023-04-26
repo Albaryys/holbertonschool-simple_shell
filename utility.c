@@ -55,6 +55,13 @@ char *find_program_in_path(char *program_name, char **path_list)
 {
 	char *full_path;
 
+	/* vérifier si le programme est déjà un chemin absolu*/
+	if (access(program_name, X_OK) == 0)
+	{
+		return (program_name);
+	}
+
+
 	while (*path_list != NULL)
 	{
 		/* Construct the full path to the program */
