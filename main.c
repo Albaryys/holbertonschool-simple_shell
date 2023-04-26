@@ -40,11 +40,13 @@ int main()
 		if (nb_char_read == -1)
 		{
 			/* STOP if "Ctrl+D" detected */
+			printf("\n");
 			free(cmd);
 			return (EXIT_SUCCESS);
 		} else if (_strncmp(cmd, "exit", 4) == 0)
 		{
 			free(cmd);
+			printf("\n");
 			return (EXIT_SUCCESS);
 		}
 		if (nb_char_read > 1)
