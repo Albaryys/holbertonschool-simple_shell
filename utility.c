@@ -3,23 +3,22 @@
 /**
  * _getenv - Function that gets the value of the environmental variable.
  * @name: Name of the environmental variable.
+ * @env: The environement.
  *
  * Return: The value of the environmental variable or NULL if the variable is
  * not found.
  */
-char *_getenv(const char *name)
+char *_getenv(const char *name_var_env, char **env)
 {
-	int i;
-	char **env;
-	char *path;
+	size_t len_name_var_env = _strlen(name_var_env);
 
-	for (i = 0; environ[i]; i++)
+	while (*env != NULL)
 	{
-		if (_strcmp(environ[i], name) == 0)
+		if (_strncmp(name_var_env, *env, len_name_var_env) == 0 && (*env)[len_name_var_env] == '=')
 		{
-			path = environ[i] + _strlen(name) + 1;
-			return (path);
+			return (&(*env)[len_name_var_env + 1]);
 		}
+		env++;
 	}
 	return (NULL);
 }
