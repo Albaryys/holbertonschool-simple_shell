@@ -27,26 +27,33 @@ int main()
 	char **path_list;
 	char *not_found = "NOTFOUND";
 
+	/* Determine if the program is running in interactive mode or not */
+	int interactive = isatty(STDIN_FILENO);
+
 	while (1)
 	{
-		printf("#cisfun$ ");
+		/* If the program is running in interactive mode, print the prompt */
+		if (interactive)
+			printf("#cisfun$ ");
+
 		nb_char_read = getline(&cmd, &len, stdin);
 		nb_cmd++;
-		/*Supprimer le caractère de nouvelle ligne à la fin de la ligne lue*/
 
+		/*Supprimer le caractère de nouvelle ligne à la fin de la ligne lue*/
 		if (nb_char_read != -1)
 			cmd[nb_char_read - 1] = '\0';
 
 		if (nb_char_read == -1)
 		{
 			/* STOP if "Ctrl+D" detected */
-			printf("\n");
+			if (interactive)
+				printf("\n");
+
 			free(cmd);
 			return (EXIT_SUCCESS);
 		} else if (_strncmp(cmd, "exit", 4) == 0)
 		{
 			free(cmd);
-			printf("\n");
 			return (EXIT_SUCCESS);
 		}
 		if (nb_char_read > 1)
