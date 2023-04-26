@@ -104,7 +104,7 @@ int main(void)
 				}
 			}
 			free_array(args);
-			if (_strncmp(full_path_cmd, "NOTFOUND", 8) != 0)
+			/*if (_strncmp(full_path_cmd, "NOTFOUND", 8) != 0)*/
 				free(full_path_cmd);
 		}
 	}
