@@ -1,0 +1,43 @@
+SIMPLE-SHELL(1)             User Commands            SIMPLE-SHELL(1)
+
+NAME
+       simple_shell - a simple shell program
+
+SYNOPSIS
+       simple_shell
+
+DESCRIPTION
+       simple_shell is a basic shell program that provides a command-line interface for interacting with the operating system. Users can enter commands and the shell will execute them. It is designed to be a lightweight and easy-to-use alternative to more advanced shell programs like bash.
+
+OPTIONS
+       This program does not take any command-line options.
+
+USAGE
+       To use simple_shell, simply type commands at the prompt and press Enter. The shell will execute the command and display the output. The following are some examples of commands that can be run with simple_shell:
+
+       ls - Lists the contents of the current directory.
+       cd - Changes the current working directory.
+       echo - Prints a message to the console.
+
+COMMANDS
+       The following commands are built into simple_shell:
+
+       cd [directory]
+              Changes the current working directory to [directory].
+              If no argument is provided, the current working directory is changed to the user's home directory.
+
+       exit [status]
+              Exits the shell with a status code of [status].
+              If no status code is provided, the shell exits with a status code of 0.
+
+AUTHOR
+       Written by Arnaud Tily and Marc Pourias.
+
+COPYRIGHT
+       This is free software: you are free to change and redistribute it. There is NO WARRANTY, to the extent permitted by law.
+
+SEE ALSO
+       bash(1)
+
+                                           2023-04-22                         SIMPLE-SHELL(1)
+
