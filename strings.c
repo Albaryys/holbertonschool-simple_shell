@@ -1,25 +1,23 @@
 #include "simple_shell.h"
 
 /**
- * _strlen - returns the length of a string
- * @s: a string to measure
- * Return: 0 if fails
+ * _strlen - This function returns the length of a string
+ *
+ * @s: pointer of integer s
+ *
+ * Return: length of a string
  */
-int _strlen(char *s)
-{
-	int c;
 
-	c = 0;
-	if (*s != '\0')
-	{
-		c = 1 + _strlen(s + 1);
-		return (c);
-	}
-	else
-	{
-		return (0);
-	}
+size_t _strlen(const char *s)
+{
+	size_t length = 0;
+
+	while (*s++)
+		length++;
+
+	return (length);
 }
+
 
 /**
  * _strdup - Duplicate a string.
