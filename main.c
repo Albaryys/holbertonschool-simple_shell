@@ -105,7 +105,7 @@ int main(void)
 			}
 			free_array(args);
 			if (_strncmp(full_path_cmd, "NOTFOUND", 8) != 0)
-				fee(full_path_cmd);
+				free(full_path_cmd);
 		}
 	}
 
