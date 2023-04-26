@@ -2,7 +2,7 @@
 
 /**
  * _getenv - Function that gets the value of the environmental variable.
- * @name: Name of the environmental variable.
+ * @name_var_env: Name of the environmental variable.
  * @env: The environement.
  *
  * Return: The value of the environmental variable or NULL if the variable is
