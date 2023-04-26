@@ -22,7 +22,6 @@ int main(void)
 	char *cmd_name;
 	char *path;
 	char **path_list;
-	char *not_found = "NOTFOUND";
 
 	/* Determine if the program is running in interactive mode or not */
 	int interactive = isatty(STDIN_FILENO);
@@ -74,7 +73,7 @@ int main(void)
 				return (EXIT_FAILURE);
 			}
 
-			if (*full_path_cmd == *not_found)
+			if (_strncmp(full_path_cmd, "NOTFOUND", 8) == 0)
 			{
 				printf("sh: %d: %s: not found\n", nb_cmd, cmd_name);
 			} else
