@@ -44,37 +44,31 @@ char *getinput(void)
 }
 
 /**
- * search_path - searches for the full path of a given command
- * @command: the command to search for
- * @env: the environment variables
- * Return: the full path of the command if found, otherwise NULL
+ * find_program_in_path - searches for the full path of a given program name
+ * @program_name: the name of the program.
+ * @path_list: the list of each path folders.
+ *
+ * Return: the full path of the program found, otherwise "NOTFOUND"
  */
-char *search_path(char *command, char **env)
+char* find_program_in_path(char *program_name, char **path_list)
 {
-	char *path, *token, *tmp;
-	struct stat st;
+	char *full_path;
 
-	if (!command || !env)
-		return (NULL);
-
-	path = _getenv("PATH", env);
-
-	token = strtok(path, ":");
-	while (token)
+	while (*path_list != NULL)
 	{
-		tmp = _strcat(token, "/");
-		tmp = _strcat(tmp, command);
+		/* Construct the full path to the program */
+		full_path = malloc(sizeof(*full_path) * (_strlen(*path_list) + _strlen(program_name) + 2));
+		if (full_path == NULL)
+			return (NULL);
 
-		if (stat(tmp, &st) == 0)
+		sprintf(full_path, "%s/%s", *path_list, program_name);
+		/* Check if the program exists in this directory */
+		if (access(full_path, F_OK) != -1)
 		{
-			free(path);
-			return (tmp);
+			return (full_path);   /* program found */
 		}
-		free(tmp);
-		token = strtok(NULL, ":");
+		path_list++;    /* move to the next directory */
+		free (full_path);
 	}
-
-	free(path);
-	return (NULL);
+	return ("NOTFOUND");   /* program not found */
 }
-
