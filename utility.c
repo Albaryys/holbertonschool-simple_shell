@@ -25,26 +25,6 @@ char *_getenv(const char *name_var_env, char **env)
 }
 
 /**
- * getinput - read input from user
- *
- * Return: a pointer to a string containing the user's input
- */
-char *getinput(void)
-{
-	char *input = NULL;
-	size_t bufsize = 0;
-
-	if (getline(&input, &bufsize, stdin) == -1)
-	{
-		perror("getline");
-		free(input);
-		input = NULL;
-	}
-
-	return (input);
-}
-
-/**
  * find_program_in_path - searches for the full path of a given program name
  * @program_name: the name of the program.
  * @path_list: the list of each path folders.
@@ -54,11 +34,13 @@ char *getinput(void)
 char *find_program_in_path(char *program_name, char **path_list)
 {
 	char *full_path;
+	char *not_found = "NOTFOUND";
+	char *copy_program_name = _strdup(program_name);
 
 	/* vérifier si le programme est déjà un chemin absolu*/
 	if (access(program_name, X_OK) == 0)
 	{
-		return (program_name);
+		return (copy_program_name);
 	}
 
 
@@ -79,7 +61,7 @@ char *find_program_in_path(char *program_name, char **path_list)
 		path_list++;    /* move to the next directory */
 		free(full_path);
 	}
-	return ("NOTFOUND");   /* program not found */
+	return (not_found);   /* program not found */
 }
 
 /**
