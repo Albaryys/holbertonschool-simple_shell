@@ -88,3 +88,47 @@ void free_array(char **arr)
 	}
 	free(arr);
 }
+
+
+/**
+ * tokenize_str_to_array - Tokenize a string into an array.
+ * @cmd: The string
+ * @delimiter: The delimiter
+ *
+ * Return: the pointer to the array
+ */
+char **tokenize_str_to_array(char* cmd, char *delimiter)
+{
+	char *cmd_copy = _strdup(cmd);
+	char **args = NULL;
+	int num_tokens = 0;
+	int i = 0;
+	char* token = strtok(cmd, delimiter);
+
+	while (token != NULL)
+	{
+		num_tokens++;
+		token = strtok(NULL, delimiter);
+	}
+
+	args = malloc(sizeof(*args) * (num_tokens + 1));
+	if (args == NULL)
+	{
+		free(cmd);
+		free(cmd_copy);
+		exit(EXIT_FAILURE);
+	}
+	/* allouer la mémoire pour le tableau de pointeurs */
+	token = strtok(cmd_copy, delimiter);
+
+	while (token != NULL)
+	{
+		args[i] = _strdup(token); /* allouer la mémoire pour stocker la chaîne de caractères et la copier */
+		i++;
+		token = strtok(NULL, delimiter);
+	}
+
+	args[num_tokens] = NULL; /* dernière case du tableau égale à NULL */
+	free (cmd_copy);
+	return (args);
+}
