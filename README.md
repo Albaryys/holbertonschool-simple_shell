@@ -14,14 +14,7 @@ It is designed to perform the same basic functions as the built-in shell (/bin/s
 - The program must be able to execute commands with arguments and handle pipes and redirections.
 
 ### COMPILATION COMMAND:
-The shell will be compiled this way:
-=======
-- The program must compile without any errors or warnings using gcc.
-- The program must use the Betty style.
-- The program must not have any memory leaks or errors.
-- The program must have a prompt "Ownshell$" that waits for user input.
-- The program must exit when the user types "exit" or presses Ctrl-D.
-- The program must be able to execute commands with arguments and handle pipes and redirections.
+The shell will be compiled on Ubuntu 20.04 LTS using gcc:
 
 ### COMPILATION COMMAND:
 To compile the simpleshell program, use the following command:
