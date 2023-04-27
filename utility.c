@@ -43,7 +43,7 @@ char *find_program_in_path(char *program_name, char **path_list)
 		return (copy_program_name);
 	}
 
-	free(copy_program-name);
+	free(copy_program_name);
 
 
 	while (*path_list != NULL)
