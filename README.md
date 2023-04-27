@@ -3,7 +3,7 @@
 ### DESCRIPTION:
 The project "simple_shell" is an implementation of a simple UNIX shell that accepts and executes user commands.
 It is designed to perform the same basic functions as the built-in shell (/bin/sh) on UNIX systems.
-```
+
 ### REQUIREMENTS:
 - The program must be written in C.
 - The program must compile without any errors or warnings using gcc.
