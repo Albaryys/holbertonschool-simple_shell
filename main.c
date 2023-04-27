@@ -38,7 +38,7 @@ int main(void)
 		nb_char_read = getline(&cmd, &len, stdin);
 		nb_cmd++;
 
-		/*Supprimer le caractère de nouvelle ligne à la fin de la ligne lue*/
+		/*remove the new line character at the end of the line*/
 		if (nb_char_read != -1)
 			cmd[nb_char_read - 1] = '\0';
 
@@ -60,7 +60,7 @@ int main(void)
 		}
 		if (nb_char_read > 1)
 		{
-			/*une commande a été tapée*/
+			/*a command has been typed*/
 			args = tokenize_str_to_array(cmd, " ");
 			cmd_name = args[0];
 			full_path_cmd = find_program_in_path(cmd_name, path_list);

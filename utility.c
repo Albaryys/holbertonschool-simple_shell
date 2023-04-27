@@ -37,7 +37,7 @@ char *find_program_in_path(char *program_name, char **path_list)
 	char *not_found = "NOTFOUND";
 	char *copy_program_name = _strdup(program_name);
 
-	/* vérifier si le programme est déjà un chemin absolu*/
+	/*check if the program exist in this directory*/
 	if (access(program_name, X_OK) == 0)
 	{
 		return (copy_program_name);
@@ -109,18 +109,19 @@ char **tokenize_str_to_array(char *cmd, char *delimiter)
 		free(cmd_copy);
 		exit(EXIT_FAILURE);
 	}
-	/* allouer la mémoire pour le tableau de pointeurs */
+	/* allocate memory for the pointer of array*/
 	token = strtok(cmd_copy, delimiter);
 
 	while (token != NULL)
 	{
-		/* allouer la mémoire pour stocker la chaîne de caractères et la copier */
+		/* allocate memory to stock an character string and copy paste it*/
 		args[i] = _strdup(token);
 		i++;
 		token = strtok(NULL, delimiter);
 	}
 
-	args[num_tokens] = NULL; /* dernière case du tableau égale à NULL */
+	/* last caste of the array is equal to NULL */
+	args[num_tokens] = NULL;
 	free(cmd_copy);
 	return (args);
 }
