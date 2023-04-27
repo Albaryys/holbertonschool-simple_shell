@@ -1,27 +1,61 @@
-.TH SIMPLE-SHELL(1) "27 april 2023" "MANPAGE"
+.\" Manpage for simpleshell
+.TH SIMPLE-SHELL 2023-04-27 "Manual for program ./shs"
+
 .SH NAME
-simple_shell - a simple shell program
+./hsh - a simple shell program
 . SH SYNOPSIS
 simple_shell
+
 .SH DESCRIPTION
 simple_shell is a basic shell program that provides a command-line interface for interacting with the operating system. Users can enter commands and the shell will execute them. It is designed to be a lightweight and easy-to-use alternative to more advanced shell programs like bash.
+
 .SH OPTIONS
 This program does not take any command-line options.
+
 .SH USAGE
+It is possible to use it on interactive mode and non interactive mode.
 To use simple_shell, simply type commands at the prompt and press Enter. The shell will execute the command and display the output. The following are some examples of commands that can be run with simple_shell:
 .TP ls - Lists the contents of the current directory.
 .TP echo - Prints a message to the console.
+
 .SH COMMANDS
 The following commands are built into simple_shell:
-.SS cd [directory]
-Changes the current working directory to [directory].
-If argument is provided, the current working directory is changed to the user's home directory.
-.SS exit [status]
-Exits the shell with a status code of [status].
-If no status code is provided, the shell exits with a status code of 0.
+.SS INTERACTIVE MODE:
+./hsh
+$ <your command>
+
+.SS NON INTERACTIVE MODE:
+echo "<your command>" | ./shs
+
+.SH EXEMPLES
+.SS INTERACTIVE MODE
+./hsh
+$ ls
+.SS NON INTERACTIVE MODE
+echo "ls" | ./shs
+
+.SH RETURN
+0: Succes
+.TP
+127: Command not found
+.TP
+128: Memory allocation fault
+.TP
+129: Process child fault
+.TP
+130: Execution command fault
+
+.SH NOTES
+This project was created in 2 weeks.
+
+.SH BUGS
+When the environement or the PATH is empty, the program failled.
+
 .SH AUTHOR
 Written by Arnaud Tily and Marc Pourias.
+
 .SH COPYRIGHT
 This is free software: you are free to change and redistribute it. There is NO WARRANTY, to the extent permitted by law.
+
 .SH SEE ALSO
 bash(1)
