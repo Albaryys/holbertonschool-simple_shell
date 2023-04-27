@@ -23,19 +23,22 @@ To run the program, execute the following command:
 - The program must compile without any errors or warnings using gcc.
 - The program must use the Betty style.
 - The program must not have any memory leaks or errors.
-- The program must have a prompt "Cisfun$" that waits for user input.
+- The program must have a prompt "Ownshell$" that waits for user input.
 - The program must exit when the user types "exit" or presses Ctrl-D.
 - The program must be able to execute commands with arguments and handle pipes and redirections.
 
 ### EXAMPLES:
 ```
-$ ls
+Ownshell$ ls
+
+AUTHORS README.md Simpleshell flowchart.png main.c man_1_simpleshell simple_shell.h strings.c utility.c
 ```
 
 ### TESTING:
-- Unit tests using a testing framework like check.
+- Using Valgrind to fix memorys leaks
 - Manual tests for expected and edge cases.
-- Integration tests with other shell scripts and programs.
+- Testing a couple of time the same command to check if it's dont crash (segmentation fault)
+- Using online compiler to check more often the issues due to the code
 
 ### AUTHORS:
 Marc Pourias, Arnaud Tily
