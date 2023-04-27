@@ -6,6 +6,7 @@ It is designed to perform the same basic functions as the built-in shell (/bin/s
 
 ### REQUIREMENTS:
 - The program must be written in C.
+<<<<<<< HEAD
 - The program must compile without any errors or warnings using gcc on Ubuntu 20.04 LTS
 - The program must use the Betty style.
 - The program must not have any memory leaks or errors.
@@ -14,6 +15,17 @@ It is designed to perform the same basic functions as the built-in shell (/bin/s
 - The program must be able to execute commands with arguments and handle pipes and redirections.
 ## COMPILATION COMMAND:
 The shell will be compiled this way:
+=======
+- The program must compile without any errors or warnings using gcc.
+- The program must use the Betty style.
+- The program must not have any memory leaks or errors.
+- The program must have a prompt "Ownshell$" that waits for user input.
+- The program must exit when the user types "exit" or presses Ctrl-D.
+- The program must be able to execute commands with arguments and handle pipes and redirections.
+
+### COMPILATION COMMAND:
+To compile the simpleshell program, use the following command:
+>>>>>>> b25c15d89274126ab070f057d319a5c7ea1cb7c4
 
 ```
 gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
@@ -48,12 +60,15 @@ To run the program, execute the following command:
 ./hsh
 ```
 
+<<<<<<< HEAD
 ##NON INTERACTIVE MODE:
 To run the program in non interactive mode, execute the following command:
 
 ```
 echo "<your command>" | ./hsh
 ```
+=======
+>>>>>>> b25c15d89274126ab070f057d319a5c7ea1cb7c4
 ### EXAMPLES:
 ```
 $ ls
