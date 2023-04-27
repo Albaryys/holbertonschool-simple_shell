@@ -67,6 +67,7 @@ int main(void)
 		if (nb_char_read > 1)
 		{
 			/*a command has been typed*/
+			code = 0;
 			args = tokenize_str_to_array(cmd, " ");
 			cmd_name = args[0];
 			full_path_cmd = find_program_in_path(cmd_name, path_list);
@@ -81,7 +82,7 @@ int main(void)
 
 			if (_strncmp(full_path_cmd, "NOTFOUND", 8) == 0)
 			{
-				printf("sh: %d: %s: not found\n", nb_cmd, cmd_name);
+				fprintf(stderr, "./hsh: %d: %s: not found\n", nb_cmd, cmd_name);
 				code = 127;
 			} else
 			{
