@@ -72,12 +72,19 @@ echo "ls" | ./hsh
 
 AUTHORS README.md Simpleshell flowchart.png main.c man_1_simpleshell simple_shell.h strings.c utility.c
 ```
+### MANPAGE:
+```
+man ./man_1_simple_shell
+```
 
 ### TESTING:
 - Using Valgrind to fix memorys leaks
 - Manual tests for expected and edge cases.
 - Testing a couple of time the same command to check if it's dont crash (segmentation fault)
 - Using online compiler to check more often the issues due to the code
+
+### BUGS:
+- When the envorinement or the PATH is empty.
 
 ### AUTHORS:
 Marc Pourias, Arnaud Tily
