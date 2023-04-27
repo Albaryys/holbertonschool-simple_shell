@@ -4,7 +4,7 @@
 The project "simple_shell" is an implementation of a simple UNIX shell that accepts and executes user commands.
 It is designed to perform the same basic functions as the built-in shell (/bin/sh) on UNIX systems.
 
-![flowchart](Simpleshell flowchart.png)
+![image](Simpleshell flowchart.png)
 
 ### REQUIREMENTS:
 - The program must be written in C.
