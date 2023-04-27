@@ -22,12 +22,18 @@ int main(void)
 	char *cmd_name;
 	char *path;
 	char **path_list;
+	int code = 0;
 
 	/* Determine if the program is running in interactive mode or not */
 	int interactive = isatty(STDIN_FILENO);
 
 	path = _getenv("PATH", &(*env));
 	path_list = tokenize_str_to_array(path, ":");
+	if (path_list == NULL)
+	{
+		free_array(path_list);
+		exit(128);
+	}
 
 	while (1)
 	{
@@ -50,13 +56,13 @@ int main(void)
 
 			free(cmd);
 			free_array(path_list);
-			return (EXIT_SUCCESS);
+			exit(code);
 		} else if (_strncmp(cmd, "exit", 4) == 0)
 		{
-			/* exit resuqted */
+			/* exit requested */
 			free(cmd);
 			free_array(path_list);
-			return (EXIT_SUCCESS);
+			exit(code);
 		}
 		if (nb_char_read > 1)
 		{
@@ -70,12 +76,13 @@ int main(void)
 				free_array(args);
 				free_array(path_list);
 				free(full_path_cmd);
-				return (EXIT_FAILURE);
+				exit(128);
 			}
 
 			if (_strncmp(full_path_cmd, "NOTFOUND", 8) == 0)
 			{
 				printf("sh: %d: %s: not found\n", nb_cmd, cmd_name);
+				code = 127;
 			} else
 			{
 				pid = fork();
@@ -86,7 +93,7 @@ int main(void)
 					free_array(args);
 					free_array(path_list);
 					free(full_path_cmd);
-					exit(EXIT_FAILURE);
+					exit(129);
 				} else if (pid == 0)
 				{
 					/*Child process*/
@@ -96,16 +103,20 @@ int main(void)
 					free_array(path_list);
 					free(full_path_cmd);
 					perror("execve");
-					exit(EXIT_FAILURE);
+					exit(130);
 				} else
 				{
 					/*Parent process*/
 					wait(&status);
 				}
 			}
-			free_array(args);
-			/*if (_strncmp(full_path_cmd, "NOTFOUND", 8) != 0)*/
+			if (_strncmp(full_path_cmd, "NOTFOUND", 8) == 0)
+				free_array(args);
+			else
+			{
+				free_array(args);
 				free(full_path_cmd);
+			}
 		}
 	}
 
