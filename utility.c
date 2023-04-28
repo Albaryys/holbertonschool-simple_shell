@@ -2,20 +2,24 @@
 
 /**
  * delete_spaces_begining - Delete spaces at the begining of the string
- * str: The string
+ * @str: The string
  */
-void delete_spaces_begining(char* str)
+void delete_spaces_begining(char *str)
 {
-	int i, j = 0;
-	int len_str = _strlen(str);
+	int i = 0;
+	int j = 0;
 
-	/* delete spaces at the begining of the string */
-	for (i = 0; i < len_str && str[i] == ' '; i++);
-	while (i < len_str)
+	while (str[i] == ' ')
+		i++;
+	if (i > 0)
 	{
-		str[j++] = str[i++];
+		do {
+			str[j] = str[i];
+			i++;
+			j++;
+		} while (str[i] != '\0');
+		str[j] = '\0';
 	}
-	str[j] = '\0';
 }
 
 /**
