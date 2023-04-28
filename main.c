@@ -45,8 +45,11 @@ int main(void)
 		nb_cmd++;
 
 		/*remove the new line character at the end of the line*/
-		if (nb_char_read != -1)
+		if (nb_char_read > 0)
 			cmd[nb_char_read - 1] = '\0';
+
+		delete_spaces_begining(cmd);
+
 
 		if (nb_char_read == -1)
 		{
@@ -64,7 +67,7 @@ int main(void)
 			free_array(path_list);
 			exit(code);
 		}
-		if (nb_char_read > 1)
+		if (_strlen(cmd) > 0)
 		{
 			/*a command has been typed*/
 			code = 0;

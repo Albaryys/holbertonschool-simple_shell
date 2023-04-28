@@ -1,6 +1,24 @@
 #include "simple_shell.h"
 
 /**
+ * delete_spaces_begining - Delete spaces at the begining of the string
+ * str: The string
+ */
+void delete_spaces_begining(char* str)
+{
+	int i, j = 0;
+	int len_str = _strlen(str);
+
+	/* delete spaces at the begining of the string */
+	for (i = 0; i < len_str && str[i] == ' '; i++);
+	while (i < len_str)
+	{
+		str[j++] = str[i++];
+	}
+	str[j] = '\0';
+}
+
+/**
  * _getenv - Function that gets the value of the environmental variable.
  * @name_var_env: Name of the environmental variable.
  * @env: The environement.

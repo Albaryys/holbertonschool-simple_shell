@@ -19,5 +19,6 @@ int _strncmp(const char *s1, const char *s2, size_t n);
 char *find_program_in_path(char *program_name, char **path_list);
 char **tokenize_str_to_array(char *cmd, char *delimiter);
 void free_array(char **arr);
+void delete_spaces_begining(char* str);
 
 #endif
